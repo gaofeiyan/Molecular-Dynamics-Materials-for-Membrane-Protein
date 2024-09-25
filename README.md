@@ -17,4 +17,4 @@ gmx mdrun -deffnm eq6
 gmx grompp -f step7_production.mdp -o md.tpr -c eq6.gro -p topol.top -n index.ndx
 nohup gmx mdrun -deffnm md -pme gpu -nb gpu -bonded gpu -v & 
 if interrupted,
-nohup gmx mdrun -s md3.tpr -cpi md3.cpt -deffnm md3 -nb gpu -v & 
+nohup gmx mdrun -s md.tpr -cpi md.cpt -deffnm md -nb gpu -v & 
