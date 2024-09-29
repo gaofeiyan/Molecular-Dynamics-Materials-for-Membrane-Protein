@@ -20,7 +20,10 @@ if interrupted,
 nohup gmx mdrun -s md.tpr -cpi md.cpt -deffnm md -nb gpu -v & 
 ## MD-Analyze
 gmx make_ndx -f md.gro -o prolig_center.ndx
+
   _3 groups: pro_lig lipid pro_lig_lipid_
+
 gmx trjconv -s md.tpr -f md.trr -o noPBC_step1.trr -pbc mol -center -n prolig_center.ndx
   _select **pro_lig_lipid** and when you want to output all the atoms in this system, just select **system** at the secondary selection)_
+### RMSD
 gmx rms -f md.xtc -s md.tpr -o md-rmsd.xvg 
