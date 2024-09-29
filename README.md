@@ -18,3 +18,9 @@ gmx grompp -f step7_production.mdp -o md.tpr -c eq6.gro -p topol.top -n index.nd
 nohup gmx mdrun -deffnm md -pme gpu -nb gpu -bonded gpu -v & 
 if interrupted,
 nohup gmx mdrun -s md.tpr -cpi md.cpt -deffnm md -nb gpu -v & 
+##MD-Analyze
+gmx make_ndx -f md.gro -o prolig_center.ndx
+  3 groups: pro_lig lipid pro_lig_lipid
+gmx trjconv -s md.tpr -f md.trr -o noPBC_step1.trr -pbc mol -center -n prolig_center.ndx
+  select **pro_lig_lipid** and when you want to output all the atoms in this system, just select **system** at the secondary selection)
+gmx rms -f md.xtc -s md.tpr -o md-rmsd.xvg 
