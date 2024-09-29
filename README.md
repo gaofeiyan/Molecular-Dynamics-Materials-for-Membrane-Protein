@@ -27,3 +27,4 @@ gmx trjconv -s md.tpr -f md.trr -o noPBC_step1.trr -pbc mol -center -n prolig_ce
   _select **pro_lig_lipid** and when you want to output all the atoms in this system, just select **system** at the secondary selection)_
 ### RMSD
 gmx rms -f md.xtc -s md.tpr -o md-rmsd.xvg 
+  _select Backbone group at twice._
