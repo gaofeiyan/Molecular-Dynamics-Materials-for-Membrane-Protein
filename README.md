@@ -22,6 +22,7 @@ nohup gmx mdrun -s md.tpr -cpi md.cpt -deffnm md -nb gpu -v &
 gmx make_ndx -f md.gro -o prolig_center.ndx
 
   _3 groups: pro_lig lipid pro_lig_lipid_
+  _check groups : gmx make_ndx -f md.gro -n prolig_center.ndx_
 
 gmx trjconv -s md.tpr -f md.trr -o noPBC_step1.trr -pbc mol -center -n prolig_center.ndx
   _select **pro_lig_lipid** and when you want to output all the atoms in this system, just select **system** at the secondary selection)_
