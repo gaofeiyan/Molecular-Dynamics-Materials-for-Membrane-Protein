@@ -1,6 +1,6 @@
 # Molecular-Dynamics-Materials
 ## MD-Step
-gmx grompp -f step6.0_minimization.mdp -c step5_input.gro -r step5_input.gro -p topol.top -o em.tpr
+gmx grompp -f step6.0_minimization.mdp -c 4194_PIP30.gro -r step5_input.gro -p topol.top -o em.tpr
 gmx mdrun -deffnm em
 gmx grompp -f step6.1_equilibration.mdp -c em.gro -r em.gro -p topol.top -o eq1.tpr -n index.ndx
 gmx mdrun -deffnm eq1
@@ -49,3 +49,4 @@ gmx hbond -f noPBC_step1.trr -s md.tpr -n prolig_center.ndx -num hbnum.xvg -hbn 
 #### python xpm2png.py -ip yes -f gibbs.xpm (sources/xpm_show/xpm2png.py)
 _check bindex.ndx and gibbs.log to find mini-energy-conformation_
 #### gmx trjconv -s md.tpr -f noPBC_step1.trr -o 4194.pdb -sep -b 4100 -e 4100 -pbc mol -n prolig_center.ndx
+extract the best mini-conformation into next new cycle until 3 times at least.
