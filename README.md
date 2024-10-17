@@ -29,7 +29,7 @@ gmx trjconv -s md.tpr -f md.trr -o noPBC_step1.trr -pbc mol -center -n prolig_ce
 ### RMSD
 gmx rms -f noPBC_step1.trr -s md.tpr -o md-rmsd.xvg -n prolig_center.ndx
   _select Backbone group twice._
-### acquire stable scale following RMSD analysis
+### extract stable scale following RMSD analysis
 gmx trjconv -f noPBC_step1.trr -b 250000 -e 500000 -o analyze.xtc 
 ### RMSF
 gmx rmsf -f analyze.xtc  -s md.tpr -o rmsf.xvg -res -n prolig_center.ndx
