@@ -27,5 +27,19 @@ gmx make_ndx -f md.gro -o prolig_center.ndx
 gmx trjconv -s md.tpr -f md.trr -o noPBC_step1.trr -pbc mol -center -n prolig_center.ndx
   _select **pro_lig_lipid** and when you want to output all the atoms in this system, just select **system** at the secondary selection)_
 ### RMSD
-gmx rms -f md.trr -s md.tpr -o md-rmsd.xvg -n prolig_center.ndx
+gmx rms -f noPBC_step1.trr -s md.tpr -o md-rmsd.xvg -n prolig_center.ndx
   _select Backbone group twice._
+### acquire stable scale following RMSD analysis
+gmx trjconv -f noPBC_step1.trr -b 250000 -e 500000 -o analyze.xtc 
+### RMSF
+gmx rmsf -f analyze.xtc  -s md.tpr -o rmsf.xvg -res -n prolig_center.ndx
+_select Backbone group._
+### Rg
+gmx gyrate -s md.tpr -f noPBC_step1.trr -o md-gyrate.xvg -n prolig_center.ndx
+  _select Backbone group._
+### SASA
+gmx sasa -f noPBC_step1.trr -s md.tpr -o md-area.xvg -n prolig_center.ndx
+_select Backbone group._
+### H Bonds
+gmx hbond -f noPBC_step1.trr -s md.tpr -n prolig_center.ndx -num hbnum.xvg -hbn hbonds.ndx -hbm hbmap.xpm
+
