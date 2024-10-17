@@ -47,3 +47,5 @@ gmx hbond -f noPBC_step1.trr -s md.tpr -n prolig_center.ndx -num hbnum.xvg -hbn 
 #### pc_combine.py rmsd.xvg gyrate.xvg output.xvg (3 lines in order: time, rmsd, rg)
 #### gmx sham -tsham 310 -nlevels 100 -f output.xvg -ls gibbs.xpm -g gibbs.log -lsh enthalpy.xpm -lss entropy.xpm
 #### python xpm2png.py -ip yes -f gibbs.xpm (sources/xpm_show/xpm2png.py)
+_check bindex.ndx and gibbs.log to find mini-energy-conformation_
+#### gmx trjconv -s md.tpr -f noPBC_step1.trr -o 4194.pdb -sep -b 4100 -e 4100 -pbc mol -n prolig_center.ndx
