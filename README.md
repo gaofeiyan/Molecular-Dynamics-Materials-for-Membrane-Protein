@@ -43,7 +43,8 @@ _select Backbone group._
 ### H Bonds
 gmx hbond -f noPBC_step1.trr -s md.tpr -n prolig_center.ndx -num hbnum.xvg -hbn hbonds.ndx -hbm hbmap.xpm
 ### PCA
-gmx rms -s md.tpr -f prolig_fit.xtc -o FEL_rmsd.xvg -n prolig.ndx
+gmx rms -s md.tpr -f noPBC_step1.trr -o FEL_rmsd.xvg -n prolig.ndx
+gmx rms -s md.tpr -f noPBC_step1.trr -o FEL_rmsd.xvg -n prolig.ndx
 pc_combine.py rmsd.xvg gyrate.xvg output.xvg (3 lines in order: time, rmsd, rg)
 gmx sham -tsham 310 -nlevels 100 -f output.xvg -ls gibbs.xpm -g gibbs.log -lsh enthalpy.xpm -lss entropy.xpm
 python xpm2png.py -ip yes -f gibbs.xpm (sources/xpm_show/xpm2png.py)
