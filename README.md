@@ -42,4 +42,5 @@ gmx sasa -f noPBC_step1.trr -s md.tpr -o md-area.xvg -n prolig_center.ndx
 _select Backbone group._
 ### H Bonds
 gmx hbond -f noPBC_step1.trr -s md.tpr -n prolig_center.ndx -num hbnum.xvg -hbn hbonds.ndx -hbm hbmap.xpm
+### PCA
 
