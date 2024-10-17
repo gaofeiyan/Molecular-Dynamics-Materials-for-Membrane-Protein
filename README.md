@@ -48,6 +48,7 @@ gmx gyrate -s md.tpr -f noPBC_step1.trr -o FEL_gyrate.xvg -n prolig_center.ndx
 pc_combine.py FEL_rmsd.xvg FEL_gyrate.xvg output.xvg (3 lines in order: time, rmsd, rg)
 gmx sham -tsham 310 -nlevels 100 -f output.xvg -ls gibbs.xpm -g gibbs.log -lsh enthalpy.xpm -lss entropy.xpm
 python xpm2png.py -ip yes -f gibbs.xpm (sources/xpm_show/xpm2png.py)
-_check bindex.ndx and gibbs.log to find mini-energy-conformation_
+_check bindex.ndx and gibbs.log to find mini-energy-conformation     
+To check the trr: gmx check -f noPBC_step1.trr_
 gmx trjconv -s md.tpr -f noPBC_step1.trr -o 4194.pdb -sep -b 4100 -e 4100 -pbc mol -n prolig_center.ndx
 extract the best mini-conformation into next new cycles until 3 times at least.
