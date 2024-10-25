@@ -22,26 +22,35 @@ nohup gmx mdrun -s md.tpr -cpi md.cpt -deffnm md -nb gpu -v &
 gmx make_ndx -f md.gro -o prolig_center.ndx
 
   _3 groups: pro_lig lipid pro_lig_lipid_
+  
   _check groups : gmx make_ndx -f md.gro -n prolig_center.ndx_
 
 gmx trjconv -s md.tpr -f md.trr -o noPBC_step1.trr -pbc mol -center -n prolig_center.ndx
+ 
   _select **pro_lig_lipid** and when you want to output all the atoms in this system, just select **system** at the secondary selection)_
 ### RMSD
 gmx rms -f noPBC_step1.trr -s md.tpr -o md-rmsd.xvg -n prolig_center.ndx
+  
   _select Backbone group twice._
 ### extract stable scale following RMSD analysis
 gmx trjconv -f noPBC_step1.trr -b 250000 -e 500000 -o analyze.xtc 
 ### RMSF
 gmx rmsf -f analyze.xtc  -s md.tpr -o rmsf.xvg -res -n prolig_center.ndx
+
 _select Backbone group._
 ### Rg
 gmx gyrate -s md.tpr -f noPBC_step1.trr -o md-gyrate.xvg -n prolig_center.ndx
+
   _select Backbone group._
 ### SASA
 gmx sasa -f noPBC_step1.trr -s md.tpr -o md-area.xvg -n prolig_center.ndx
+
 _select Backbone group._
 ### H Bonds
 gmx hbond -f noPBC_step1.trr -s md.tpr -n prolig_center.ndx -num hbnum.xvg -hbn hbonds.ndx -hbm hbmap.xpm
+
+_select 1 Protein and 13 UNK_
+
 ### PCA
 gmx rms -s md.tpr -f noPBC_step1.trr -o FEL_rmsd.xvg -n prolig_center.ndx 
 
@@ -54,6 +63,7 @@ gmx sham -tsham 310 -nlevels 100 -f output.xvg -ls gibbs.xpm -g gibbs.log -lsh e
 python xpm2png.py -ip yes -f gibbs.xpm (sources/xpm_show/xpm2png.py)
 
 _check bindex.ndx and gibbs.log to find mini-energy-conformation     
+
 To check the trr: gmx check -f noPBC_step1.trr_
 
 gmx trjconv -s md.tpr -f noPBC_step1.trr -o 4194.pdb -sep -b 4100 -e 4100 -pbc mol -n prolig_center.ndx
