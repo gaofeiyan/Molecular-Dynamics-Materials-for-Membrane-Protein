@@ -69,3 +69,8 @@ To check the trr: gmx check -f noPBC_step1.trr_
 gmx trjconv -s md.tpr -f noPBC_step1.trr -o 4194.pdb -sep -b 4100 -e 4100 -pbc mol -n prolig_center.ndx
 
 extract the best mini-conformation into next new cycles until 3 times at least.
+
+### MM/PBSA
+chmod +x gmx_mmpbsa.bash
+
+bash gmx_mmpbsa.bash
