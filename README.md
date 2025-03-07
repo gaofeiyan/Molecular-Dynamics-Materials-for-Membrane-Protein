@@ -105,4 +105,5 @@ extract the best mini-conformation into next new cycles until 3 times at least.
 
 conda activate gmxmmpbsa
 
- gmx_MMPBSA -O -i mmpbsa.in -cs com.tpr -ci index.ndx -cg 1 13 -ct com_traj.xtc -rs rec.pdb -ri rec_index.ndx -rg 1 -rt rec_traj.pdb -lm ligand.mol2 -ls lig.pdb -li lig_index.ndx -lg 2 -lt lig_traj.pdb -o FINAL_RESULTS_MMPBSA.dat -eo FINAL_RESULTS_MMPBSA.csv
+
+ mpirun -np 6 gmx_MMPBSA -O -i GBmmpbsa.in -cs md.tpr -ci prolig_center.ndx -cg 1 13 -ct md.xtc -cp topol.top
