@@ -1,0 +1,23 @@
+#mmpbsa.in示例
+
+&general
+sys_name="Prot-Lig-CHARMM",
+startframe=1,
+endframe=999999,
+# In gmx_MMPBSA v1.5.0 we have added a new PB radii set named charmm_radii. 
+# This radii set should be used only with systems prepared with CHARMM force fields. 
+# Uncomment the line below to use charmm_radii set
+#PBRadii=7,
+/
+&pb
+# radiopt=0 is recommended which means using radii from the prmtop file for both the PB calculation and for the NP
+# calculation
+istrng=0.15, fillratio=4.0, radiopt=0, inp=1
+
+/
+&decomp
+idecomp=2, dec_verbose=3,
+# This will print all residues that are less than 4 À between
+# the receptor and the ligand
+print_res="within 4"
+
