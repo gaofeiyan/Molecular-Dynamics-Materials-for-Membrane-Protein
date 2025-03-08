@@ -107,4 +107,4 @@ gmx trjconv -f noPBC_step1.trr -b 490000 -e 500000 -o analyze.xtc
 
 conda activate gmxmmpbsa
 
- gmx_MMPBSA -O -i GBmmpbsa.in -cs md.tpr -ci prolig_center.ndx -cg 1 13 -ct md.xtc -cp topol.top
+ mpirun -np 32 gmx_MMPBSA -O -i GBmmpbsa.in -cs md.tpr -ci prolig_center.ndx -cg 1 13 -ct md.xtc -cp topol.top
