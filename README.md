@@ -108,3 +108,7 @@ gmx trjconv -f noPBC_step1.trr -b 490000 -e 500000 -o analyze.xtc
 conda activate gmxmmpbsa
 
  nohup mpirun --allow-run-as-root -np 32 gmx_MMPBSA -O -i PBmmpbsa.in -cs md.tpr -ci index.ndx -cg 1 13 -ct mmpbsa.xtc -cp topol.top &
+
+###PB Pro-Pro(OPLSff)      8 Chain A    19 Chain B
+ 
+mpirun --allow-run-as-root -np 18 gmx_MMPBSA -O -i PBPro-Pro.in -cs ../49700.pdb -ct ../md.xtc -ci ../prolig_center.ndx -cg 18 19 -cp ../topol.top -o FINAL_RESULTS_MMPBSA.dat -eo FINAL_RESULTS_MMPBSA.csv
