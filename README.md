@@ -1,6 +1,6 @@
 # Molecular-Dynamics-Materials
 ## MD-Step
-gmx grompp -f step6.0_minimization.mdp -c 4194_PIP30.gro -r step5_input.gro -p topol.top -o em.tpr
+gmx grompp -f step6.0_minimization.mdp -c step5_input.gro -r step5_input.gro -p topol.top -o em.tpr
 
 gmx mdrun -deffnm em
 
@@ -43,13 +43,13 @@ gmx make_ndx -f md.gro -o prolig_center.ndx
   
   _check groups : gmx make_ndx -f md.gro -n prolig_center.ndx_
 
-gmx trjconv -s md.tpr -f md.trr -o noPBC_step1.trr -pbc mol -center -n prolig_center.ndx
+gmx trjconv -s md.tpr -f md.xtc -o noPBC_step1.xtc -pbc mol -center -n prolig_center.ndx
  
   _select **pro_lig_lipid** and when you want to output all the atoms in this system, just select **system** at the secondary selection)_
 
 ### RMSD
 
-gmx rms -f noPBC_step1.trr -s md.tpr -o md-rmsd.xvg -n prolig_center.ndx
+gmx rms -f noPBC_step1.xtc -s md.tpr -o md-rmsd.xvg -n prolig_center.ndx
   
   _select Backbone group twice._
 
