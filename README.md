@@ -121,6 +121,8 @@ mpirun --allow-run-as-root -np 18 gmx_MMPBSA -O -i PBPro-Pro.in -cs ../49700.pdb
 再然后要注意要在做成品MD之前，就要把小分子放到水分子前面，以免后续生成的tpr，ndx，top，gro都要改动。
 
 若是未修改小分子位置已经生成了tpr，则用命令：gmx grompp -f input.mdp -c md.gro -p topol.top -o md2.tpr
+
+gmx_MMPBSA版本要在1.5.6以上
 ```
  input.mdp 
 
