@@ -112,3 +112,32 @@ conda activate gmxmmpbsa
 ###PB Pro-Pro(OPLSff)      8 Chain A    19 Chain B
  
 mpirun --allow-run-as-root -np 18 gmx_MMPBSA -O -i PBPro-Pro.in -cs ../49700.pdb -ct ../md.xtc -ci ../prolig_center.ndx -cg 18 19 -cp ../topol.top -o FINAL_RESULTS_MMPBSA.dat -eo FINAL_RESULTS_MMPBSA.csv
+
+### 关于膜蛋白计算gmx_MMPBSA
+首先在生成的时候就要注意小分子的位置，一定要把小分子放到水分子的前面。
+其次要注意生成ndx时候，要把Protein | Ligand 划为一组
+再然后要注意要在做成品MD之前，就要把小分子放到水分子前面，以免后续生成的tpr，ndx，top，gro都要改动。
+若是未修改小分子位置已经生成了tpr，则用命令：gmx grompp -f input.mdp -c md.gro -p topol.top -o md2.tpr
+```
+ input.mdp 
+
+integrator  = md
+nsteps      = 1
+dt          = 0.002
+
+nstxout     = 0
+nstvout     = 0
+nstenergy   = 0
+nstlog      = 0
+
+cutoff-scheme = Verlet
+rlist       = 1.0
+rcoulomb    = 1.0
+rvdw        = 1.0
+
+tcoupl      = no
+pcoupl      = no
+constraints = none
+
+```
+
