@@ -55,7 +55,7 @@ gmx rms -f noPBC_step1.xtc -s md.tpr -o md-rmsd.xvg -n prolig_center.ndx
 
 ### extract stable scale following RMSD analysis
 
-gmx trjconv -f noPBC_step1.trr -b 250000 -e 500000 -o analyze.xtc 
+gmx trjconv -f noPBC_step1.xtc -b 250000 -e 500000 -o analyze.xtc 
 
 ### RMSF
 
@@ -65,27 +65,27 @@ _select Backbone group._
 
 ### Rg
 
-gmx gyrate -s md.tpr -f noPBC_step1.trr -o md-gyrate.xvg -n prolig_center.ndx
+gmx gyrate -s md.tpr -f noPBC_step1.xtc -o md-gyrate.xvg -n prolig_center.ndx
 
   _select Backbone group._
 
 ### SASA
 
-gmx sasa -f noPBC_step1.trr -s md.tpr -o md-area.xvg -n prolig_center.ndx
+gmx sasa -f noPBC_step1.xtc -s md.tpr -o md-area.xvg -n prolig_center.ndx
 
 _select Backbone group._
 
 ### H Bonds
 
-gmx hbond -f noPBC_step1.trr -s md.tpr -n prolig_center.ndx -num hbnum.xvg -hbn hbonds.ndx -hbm hbmap.xpm
+gmx hbond -f noPBC_step1.xtc -s md.tpr -n prolig_center.ndx -num hbnum.xvg -hbn hbonds.ndx -hbm hbmap.xpm
 
 _select 1 Protein and 13 UNK_
 
 ### PCA
 
-gmx rms -s md.tpr -f noPBC_step1.trr -o FEL_rmsd.xvg -n prolig_center.ndx 
+gmx rms -s md.tpr -f noPBC_step1.xtc -o FEL_rmsd.xvg -n prolig_center.ndx 
 
-gmx gyrate -s md.tpr -f noPBC_step1.trr -o FEL_gyrate.xvg -n prolig_center.ndx 
+gmx gyrate -s md.tpr -f noPBC_step1.xtc -o FEL_gyrate.xvg -n prolig_center.ndx 
 
 pc_combine.py FEL_rmsd.xvg FEL_gyrate.xvg output.xvg (3 lines in order: time, rmsd, rg)
 
@@ -103,7 +103,7 @@ extract the best mini-conformation into next new cycles until 3 times at least.
 
 ### MM/PBSA
 
-gmx trjconv -f noPBC_step1.trr -b 490000 -e 500000 -o analyze.xtc
+gmx trjconv -f noPBC_step1.xtc -b 490000 -e 500000 -o analyze.xtc
 
 conda activate gmxmmpbsa
 
