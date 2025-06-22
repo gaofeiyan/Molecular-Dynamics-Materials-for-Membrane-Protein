@@ -1,9 +1,10 @@
 #!/bin/bash
+export TMPDIR=/tmp
 
 # 用法: ./make_chain_ndx.sh your.pdb
 
 if [ $# -ne 1 ]; then
-    echo "用法: $0 your_structure.pdb"
+    echo "用法: $0 yourprotein.pdb"
     exit 1
 fi
 
@@ -20,7 +21,7 @@ for chain in $chains; do
     gmx select -s "$pdbfile" -select "chain $chain" -on "chain_$chain.ndx"
 done
 
-cat chain_*.ndx > chains_ABC.ndx
+cat chain_*.ndx > chains_AB.ndx
 
 echo "所有链索引文件已生成完成。"
 
