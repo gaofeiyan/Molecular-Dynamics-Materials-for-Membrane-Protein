@@ -124,4 +124,4 @@ r 1-90
 
 r 325-356
 
-### open the pdb files with vscode and notice the true orders of residues in the pdb files.
+### open the pdb files with vscode and notice the true orders of residues in the pdb files. You can compare with the original pdb files before docking.
