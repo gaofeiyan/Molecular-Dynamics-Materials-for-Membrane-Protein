@@ -114,3 +114,14 @@ conda activate gmxmmpbsa
 mpirun --allow-run-as-root -np 18 gmx_MMPBSA -O -i PBPro-Pro.in -cs ../49700.pdb -ct ../md.xtc -ci ../prolig_center.ndx -cg 18 19 -cp ../topol.top -o FINAL_RESULTS_MMPBSA.dat -eo FINAL_RESULTS_MMPBSA.csv
 
 
+PS:
+
+select ndx by residues orders:
+
+gmx make_ndx -f 24000.pdb -o mmpbsa.ndx
+
+r 1-90
+
+r 325-356
+
+### open the pdb files with vscode and notice the true orders of residues in the pdb files.
