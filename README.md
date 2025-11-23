@@ -36,6 +36,9 @@ if interrupted,
 
 nohup gmx mdrun -s md.tpr -cpi md.cpt -deffnm md -nb gpu -v & 
 
+### caution
+If you want to regroup the structure, just  command make_ndx, and name FIVE group: 1. SOLU; 2. MEMB; 3. SOLV; 4. SOLU_MEMB; 5. SYSTEM 
+
 ## MD-Analyze
 gmx make_ndx -f md.gro -o prolig_center.ndx
 
